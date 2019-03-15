@@ -18,8 +18,25 @@ public class ClientServiceImpl implements IClientService{
 	@Override
 	@Transactional(readOnly = true)	// Manejo de transacciones, se puede omitir
 	public List<Client> findAll() {
-
 		return (List<Client>) clientDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Client findById(Long id) {
+		return clientDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Client save(Client client) {
+		return clientDao.save(client);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public void delete(Long id) {
+		clientDao.deleteById(id);
 	}
 
 }
