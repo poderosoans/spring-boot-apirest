@@ -34,7 +34,7 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public void delete(Long id) {
 		clientDao.deleteById(id);
 	}
