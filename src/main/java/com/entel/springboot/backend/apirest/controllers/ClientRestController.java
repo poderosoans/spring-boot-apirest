@@ -44,7 +44,7 @@ public class ClientRestController {
 	
 	@GetMapping("/clients/page/{page}")
 	public Page<Client> index(@PathVariable Integer page) {
-		Pageable pegeable = PageRequest.of(page, 2);
+		Pageable pegeable = PageRequest.of(page, 6);
 		return clientService.findAll(pegeable);
 	}
 	
