@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.entel.springboot.backend.apirest.models.entity.Client;
+import com.entel.springboot.backend.apirest.models.entity.Region;
 
 public interface IClientService {
 	public List<Client> findAll();
@@ -17,4 +18,6 @@ public interface IClientService {
 	public Client save(Client client);
 	
 	public void delete (Long id);
+	
+	public List<Region> findAllRegiones();
 }
