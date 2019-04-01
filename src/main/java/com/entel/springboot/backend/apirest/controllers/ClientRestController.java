@@ -1,9 +1,14 @@
 package com.entel.springboot.backend.apirest.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -24,7 +29,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.entel.springboot.backend.apirest.models.entity.Client;
 import com.entel.springboot.backend.apirest.models.services.IClientService;
@@ -168,6 +175,33 @@ public class ClientRestController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		
+	}
+	
+	@PostMapping("/clients/upload")
+	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id) {
+		Map<String, Object> response = new HashMap<>();
+		
+		Client client = clientService.findById(id);
+		
+		if(!file.isEmpty()) {
+			String fileName = UUID.randomUUID().toString() +"_"+ file.getOriginalFilename().replace(" ", "");
+			Path fileRoute = Paths.get("uploads").resolve(fileName).toAbsolutePath();
+			
+			try {
+				Files.copy(file.getInputStream(), fileRoute);
+			} catch (IOException e) {
+				response.put("mensaje", "Error al subir la imagen: "+ fileName);
+				response.put("error", e.getMessage().concat(": ".concat(e.getCause().getMessage())));
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			client.setImage(fileName);
+			clientService.save(client);
+			
+			response.put("cliente", client);
+			response.put("mensaje", "Has subido correctamente la imagen: "+ fileName);
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 
 }

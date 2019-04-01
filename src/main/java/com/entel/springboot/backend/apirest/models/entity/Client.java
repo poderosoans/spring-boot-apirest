@@ -44,6 +44,8 @@ public class Client implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 	
+	private String image;
+	
 	/*	Asigna la fecha cada vez que se persista.
 	@PrePersist
 	public void prePersist() {
@@ -81,6 +83,11 @@ public class Client implements Serializable{
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 }
