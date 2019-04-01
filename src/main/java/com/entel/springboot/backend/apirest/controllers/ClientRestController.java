@@ -1,5 +1,6 @@
 package com.entel.springboot.backend.apirest.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -163,6 +164,16 @@ public class ClientRestController {
 		
 		Map<String, Object> response = new HashMap<>();
 		try {
+			Client client = clientService.findById(id);
+			String previousFileName = client.getImage();
+			
+			if(previousFileName != null && previousFileName.length() > 0) {
+				Path previousfileRoute = Paths.get("uploads").resolve(previousFileName).toAbsolutePath();
+				File previousImage = previousfileRoute.toFile();
+				if(previousImage.exists() && previousImage.canRead()) {
+					previousImage.delete();
+				}
+			}
 		
 		clientService.delete(id);
 		}catch(DataAccessException e) {
@@ -194,6 +205,17 @@ public class ClientRestController {
 				response.put("error", e.getMessage().concat(": ".concat(e.getCause().getMessage())));
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			
+			String previousFileName = client.getImage();
+			
+			if(previousFileName != null && previousFileName.length() > 0) {
+				Path previousfileRoute = Paths.get("uploads").resolve(previousFileName).toAbsolutePath();
+				File previousImage = previousfileRoute.toFile();
+				if(previousImage.exists() && previousImage.canRead()) {
+					previousImage.delete();
+				}
+			}
+			
 			client.setImage(fileName);
 			clientService.save(client);
 			
