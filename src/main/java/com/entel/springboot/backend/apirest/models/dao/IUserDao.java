@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.entel.springboot.backend.apirest.models.entity.User;
 
-public interface IUsuarioDao extends CrudRepository<User, Long>{
+public interface IUserDao extends CrudRepository<User, Long>{
 	
 	public User findByUsername(String username);
 	
