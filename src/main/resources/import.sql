@@ -22,3 +22,13 @@ INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(2, 'Pa
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(3, 'Roger', 'Pomacarhua', 'roger4@gmail.com', '2018-01-01');
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(2, 'Juan', 'Marquina', 'juan4@gmail.com', '2018-02-01');
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(8, 'Pablo', 'Escobar', 'pablo4@gmail.com', '2019-03-01');
+
+INSERT INTO users (username, password, enabled) VALUES ('roger','$2a$10$1Iu2pd9eJjOvRQT7ena8JebACtvMzL3HuWbmLhURjBTo7E1zcR6rW',1);
+INSERT INTO users (username, password, enabled) VALUES ('admin','$2a$10$yJ5.pvOns/tnZx5.ytjTx.pn5hQJGiXSivPG1P0MSzc9e5gTvq/Xu',1);
+
+INSERT INTO roles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+
+INSERT INTO users_roles (user_id, role_id) VALUES (1,1);
+INSERT INTO users_roles (user_id, role_id) VALUES (2,2);
+INSERT INTO users_roles (user_id, role_id) VALUES (2,1);
