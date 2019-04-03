@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.entel.springboot.backend.apirest.models.dao.IUserDao;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService, IUserService{
 	
 	private Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -42,6 +42,11 @@ public class UserService implements UserDetailsService{
 				.collect(Collectors.toList());
 		
 		return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
+	}
+
+	@Override
+	public com.entel.springboot.backend.apirest.models.entity.User findByUsername(String username) {
+		return userDao.findByUsername(username);
 	}
 
 }
