@@ -45,6 +45,7 @@ public class UserService implements UserDetailsService, IUserService{
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public com.entel.springboot.backend.apirest.models.entity.User findByUsername(String username) {
 		return userDao.findByUsername(username);
 	}

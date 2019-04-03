@@ -23,8 +23,8 @@ INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(3, 'Ro
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(2, 'Juan', 'Marquina', 'juan4@gmail.com', '2018-02-01');
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(8, 'Pablo', 'Escobar', 'pablo4@gmail.com', '2019-03-01');
 
-INSERT INTO users (username, password, enabled) VALUES ('roger','$2a$10$1Iu2pd9eJjOvRQT7ena8JebACtvMzL3HuWbmLhURjBTo7E1zcR6rW',1);
-INSERT INTO users (username, password, enabled) VALUES ('admin','$2a$10$yJ5.pvOns/tnZx5.ytjTx.pn5hQJGiXSivPG1P0MSzc9e5gTvq/Xu',1);
+INSERT INTO users (username, password, enabled, name, lastname, email) VALUES ('roger','$2a$10$1Iu2pd9eJjOvRQT7ena8JebACtvMzL3HuWbmLhURjBTo7E1zcR6rW',1, 'Roger B', 'Pomacarhua', 'roger.pomacarhua@gmail.com');
+INSERT INTO users (username, password, enabled, name, lastname, email) VALUES ('admin','$2a$10$yJ5.pvOns/tnZx5.ytjTx.pn5hQJGiXSivPG1P0MSzc9e5gTvq/Xu',1, 'Juan P', 'Gonzalez', 'juan.gonzalez@gmail.com');
 
 INSERT INTO roles (name) VALUES ('ROLE_USER');
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');

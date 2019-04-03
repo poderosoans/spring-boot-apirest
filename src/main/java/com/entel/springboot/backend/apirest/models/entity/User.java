@@ -31,6 +31,13 @@ public class User implements Serializable {
 	private String password;
 
 	private Boolean enabled;
+	
+	private String name;
+	
+	private String lastname;
+	
+	@Column(unique = true)
+	private String email;
 
 	// Carga perezosa, cascade = Cada vez que se elimina al usuario, se eliminará
 	// sus roles
@@ -77,6 +84,30 @@ public class User implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	private static final long serialVersionUID = 1L;
