@@ -9,11 +9,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
-	// Lado de Oauth
+	// Lado de Oauth: Configuración de rutas
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clients").permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clients","/api/clients/page/**","/api/uploads/img/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/api/clients/{id}").hasAnyRole("USER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/clients/upload").hasAnyRole("USER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/clients").hasRole("ADMIN")
+		.antMatchers("/api/clients/**").hasRole("ADMIN")
 		.anyRequest().authenticated();
 	}
 	
