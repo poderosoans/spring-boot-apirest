@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.entel.springboot.backend.apirest.models.dao.IClientDao;
+import com.entel.springboot.backend.apirest.models.dao.IInvoiceDao;
 import com.entel.springboot.backend.apirest.models.entity.Client;
+import com.entel.springboot.backend.apirest.models.entity.Invoice;
 import com.entel.springboot.backend.apirest.models.entity.Region;
 
 @Service
@@ -17,6 +19,9 @@ public class ClientServiceImpl implements IClientService{
 	
 	@Autowired
 	private IClientDao clientDao;
+	
+	@Autowired
+	private IInvoiceDao invoiceDao;
 	
 	@Override
 	@Transactional(readOnly = true)	// Manejo de transacciones, se puede omitir
@@ -53,6 +58,24 @@ public class ClientServiceImpl implements IClientService{
 	public List<Region> findAllRegiones() {
 		
 		return clientDao.findAllRegiones();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Invoice findInvoiceById(Long id) {	
+		return invoiceDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Invoice saveInvoice(Invoice invoice) {		
+		return invoiceDao.save(invoice);
+	}
+
+	@Override
+	@Transactional
+	public void deleteInvoice(Long id) {
+		invoiceDao.deleteById(id);
 	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.entel.springboot.backend.apirest.models.entity.Client;
+import com.entel.springboot.backend.apirest.models.entity.Invoice;
 import com.entel.springboot.backend.apirest.models.entity.Region;
 
 public interface IClientService {
@@ -20,4 +21,10 @@ public interface IClientService {
 	public void delete (Long id);
 	
 	public List<Region> findAllRegiones();
+	
+	public Invoice findInvoiceById(Long id);
+	
+	public Invoice saveInvoice(Invoice invoice);
+	
+	public void deleteInvoice(Long id);
 }
