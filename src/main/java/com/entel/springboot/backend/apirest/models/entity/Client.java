@@ -61,6 +61,7 @@ public class Client implements Serializable{
 	private Region region;
 	
 	// Bidireccional: Un cliente puede tener muchas facturas
+	@JsonIgnoreProperties({"client","hibernateLazyInitializer","handler"})
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="client", cascade=CascadeType.ALL)
 	private List<Invoice> invoices;
 	

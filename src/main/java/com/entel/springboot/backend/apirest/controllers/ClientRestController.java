@@ -59,7 +59,7 @@ public class ClientRestController {
 		return clientService.findAll(pegeable);
 	}
 	
-	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	//@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/clients/{id}")
 	//@ResponseStatus(HttpStatus.OK)	// Default 200
 	public ResponseEntity<?> show(@PathVariable Long id) {

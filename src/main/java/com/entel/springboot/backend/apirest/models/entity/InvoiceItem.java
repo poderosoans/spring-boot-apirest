@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="items_invoices")
 public class InvoiceItem implements Serializable {
@@ -22,6 +24,7 @@ public class InvoiceItem implements Serializable {
 	
 	// Unidireccional: Dueño de la relación, InvoiceItem contiene al producto, no tiene sentido consultar al producto y sus lineas 
 	// Muchos items tienen un Producto
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="product_id")
 	private Product product;

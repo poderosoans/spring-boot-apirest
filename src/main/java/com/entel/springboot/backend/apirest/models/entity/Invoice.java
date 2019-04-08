@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="invoices")
 public class Invoice implements Serializable{
@@ -39,9 +41,11 @@ public class Invoice implements Serializable{
 	// Bidireccional: Dueño de la relacion, una factura pertenece a un solo cliente
 	@ManyToOne(fetch=FetchType.LAZY)
 	// @JoinColumn(name="client_id")
+	@JsonIgnoreProperties({"invoices","hibernateLazyInitializer","handler"})
 	private Client client;
 	
 	// Undireccional: Una factura tiene muchos items, pero una linea o item no tiene relación con factura, ya que no es necesario consultar a un item y obtener su factura.
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="invoice_id") // Como no hay relación inversa lo añadimos, esta llave foranea se crea en la otra tabla 
 	private List<InvoiceItem> items;
