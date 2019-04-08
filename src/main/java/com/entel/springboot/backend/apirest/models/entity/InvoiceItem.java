@@ -18,7 +18,7 @@ public class InvoiceItem implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private Integer count;
+	private Integer quantity;
 	
 	// Unidireccional: Dueño de la relación, InvoiceItem contiene al producto, no tiene sentido consultar al producto y sus lineas 
 	// Muchos items tienen un Producto
@@ -35,16 +35,16 @@ public class InvoiceItem implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getCount() {
-		return count;
+	public Integer getQuantity() {
+		return quantity;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	public Double getAmount() {
-		return count.doubleValue() * product.getPrice();
+		return quantity.doubleValue() * product.getPrice();
 	}
 
 	public Product getProduct() {

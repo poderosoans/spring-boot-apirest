@@ -43,7 +43,7 @@ public class Invoice implements Serializable{
 	
 	// Undireccional: Una factura tiene muchos items, pero una linea o item no tiene relación con factura, ya que no es necesario consultar a un item y obtener su factura.
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="factura_id") // Como no hay relación inversa lo añadimos, esta llave foranea se crea en la otra tabla 
+	@JoinColumn(name="invoice_id") // Como no hay relación inversa lo añadimos, esta llave foranea se crea en la otra tabla 
 	private List<InvoiceItem> items;
 	
 	
