@@ -36,10 +36,12 @@ public class Invoice implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 	
+	// Bidireccional: Dueño de la relacion, una factura pertenece a un solo cliente
 	@ManyToOne(fetch=FetchType.LAZY)
-	//@JoinColumn(name="client_id")
+	// @JoinColumn(name="client_id")
 	private Client client;
 	
+	// Undireccional: Una factura tiene muchos items, pero una linea o item no tiene relación con factura, ya que no es necesario consultar a un item y obtener su factura.
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="factura_id") // Como no hay relación inversa lo añadimos, esta llave foranea se crea en la otra tabla 
 	private List<InvoiceItem> items;
@@ -103,7 +105,13 @@ public class Invoice implements Serializable{
 		this.items = items;
 	}
 
-
+	public Double getTotal() {
+		Double total = 0.00;
+		for(InvoiceItem item: items) {
+			total += item.getAmount();
+		}
+		return total;
+	}
 
 	private static final long serialVersionUID = 1L;
 }
