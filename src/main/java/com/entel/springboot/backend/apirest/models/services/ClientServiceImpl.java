@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.entel.springboot.backend.apirest.models.dao.IClientDao;
 import com.entel.springboot.backend.apirest.models.dao.IInvoiceDao;
+import com.entel.springboot.backend.apirest.models.dao.IProductDao;
 import com.entel.springboot.backend.apirest.models.entity.Client;
 import com.entel.springboot.backend.apirest.models.entity.Invoice;
+import com.entel.springboot.backend.apirest.models.entity.Product;
 import com.entel.springboot.backend.apirest.models.entity.Region;
 
 @Service
@@ -22,6 +24,9 @@ public class ClientServiceImpl implements IClientService{
 	
 	@Autowired
 	private IInvoiceDao invoiceDao;
+	
+	@Autowired
+	private IProductDao productDao;
 	
 	@Override
 	@Transactional(readOnly = true)	// Manejo de transacciones, se puede omitir
@@ -76,6 +81,13 @@ public class ClientServiceImpl implements IClientService{
 	@Transactional
 	public void deleteInvoice(Long id) {
 		invoiceDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Product> findProductByName(String term) {
+		
+		return productDao.findByNameStartingWithIgnoreCase(term);
 	}
 
 }

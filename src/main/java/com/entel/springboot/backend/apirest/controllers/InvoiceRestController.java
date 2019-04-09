@@ -1,5 +1,7 @@
 package com.entel.springboot.backend.apirest.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entel.springboot.backend.apirest.models.entity.Invoice;
+import com.entel.springboot.backend.apirest.models.entity.Product;
 import com.entel.springboot.backend.apirest.models.services.IClientService;
 
 @CrossOrigin(origins= {"http:localhost:4200"})
@@ -31,5 +34,11 @@ public class InvoiceRestController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		clientService.deleteInvoice(id);
+	}
+	
+	@GetMapping("invoices/product-filter/{term}")
+	@ResponseStatus(code=HttpStatus.OK)
+	public List<Product> productFilter(@PathVariable String term) {
+		return clientService.findProductByName(term);
 	}
 }
