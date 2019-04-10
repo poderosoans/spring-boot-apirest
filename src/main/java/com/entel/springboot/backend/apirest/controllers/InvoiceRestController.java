@@ -19,7 +19,7 @@ import com.entel.springboot.backend.apirest.models.entity.Invoice;
 import com.entel.springboot.backend.apirest.models.entity.Product;
 import com.entel.springboot.backend.apirest.models.services.IClientService;
 
-@CrossOrigin(origins= {"http:localhost:4200"})
+@CrossOrigin(origins= {"http:localhost:4200","*"})
 @RestController
 @RequestMapping("/api")
 public class InvoiceRestController {

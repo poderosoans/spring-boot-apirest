@@ -1,11 +1,11 @@
-INSERT INTO regiones (id, name) VALUES (1,'Sudam√©rica');
-INSERT INTO regiones (id, name) VALUES (2,'Centroam√©rica');
-INSERT INTO regiones (id, name) VALUES (3,'Norteam√©rica');
+INSERT INTO regiones (id, name) VALUES (1,'SudamÈrica');
+INSERT INTO regiones (id, name) VALUES (2,'CentroamÈrica');
+INSERT INTO regiones (id, name) VALUES (3,'NorteamÈrica');
 INSERT INTO regiones (id, name) VALUES (4,'Europa');
 INSERT INTO regiones (id, name) VALUES (5,'Asia');
 INSERT INTO regiones (id, name) VALUES (6,'Africa');
-INSERT INTO regiones (id, name) VALUES (7,'Ocean√≠a');
-INSERT INTO regiones (id, name) VALUES (8,'Ant√°rtida');
+INSERT INTO regiones (id, name) VALUES (7,'OceanÌa');
+INSERT INTO regiones (id, name) VALUES (8,'Ant·rtida');
 
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(1, 'Roger', 'Pomacarhua', 'roger@gmail.com', '2018-01-01');
 INSERT INTO clients (region_id, name, lastname, email, created_at) VALUES(2, 'Juan', 'Marquina', 'juan@gmail.com', '2018-02-01');
