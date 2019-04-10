@@ -41,7 +41,7 @@ public class Invoice implements Serializable{
 	// Bidireccional: Dueño de la relacion, una factura pertenece a un solo cliente
 	@ManyToOne(fetch=FetchType.LAZY)
 	// @JoinColumn(name="client_id")
-	@JsonIgnoreProperties({"invoices","hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties(value={"invoices","hibernateLazyInitializer","handler"}, allowSetters=true)
 	private Client client;
 	
 	// Undireccional: Una factura tiene muchos items, pero una linea o item no tiene relación con factura, ya que no es necesario consultar a un item y obtener su factura.
