@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class InvoiceRestController {
 	@Autowired
 	private IClientService clientService;
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/invoices/{id}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public Invoice show(@PathVariable Long id) {
@@ -32,18 +34,21 @@ public class InvoiceRestController {
 		return clientService.findInvoiceById(id);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/invoices/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		clientService.deleteInvoice(id);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("invoices/product-filter/{term}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public List<Product> productsFilter(@PathVariable String term) {
 		return clientService.findProductByName(term);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/invoices")
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public Invoice create(@RequestBody Invoice invoice) {
